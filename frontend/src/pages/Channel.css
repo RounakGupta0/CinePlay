@@ -1,0 +1,247 @@
+/* ==========================================================================
+   CinePlay - Creator Channel Styling
+   Theme: Charcoal (#171717), Deep Black (#0B0B0B), Champagne Gold (#D6AD62)
+   ========================================================================== */
+
+.channel-page {
+  padding-bottom: 72px;
+}
+
+.channel-banner {
+  width: 100%;
+  height: 240px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .channel-banner {
+    height: 150px;
+  }
+}
+
+.channel-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 28px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.channel-header-main {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.channel-large-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold-primary);
+  box-shadow: 0 0 20px rgba(214, 173, 98, 0.25);
+  background: #000;
+}
+
+.channel-meta-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.channel-display-name {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.channel-tags-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+}
+
+.channel-handle {
+  color: var(--gold-primary);
+  font-weight: 600;
+}
+
+.channel-bio-preview {
+  margin-top: 6px;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  max-width: 620px;
+  line-height: 1.55;
+}
+
+.btn-channel-sub {
+  padding: 10px 28px;
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-hover));
+  color: #0b0b0b;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(214, 173, 98, 0.25);
+  transition: all 0.25s ease;
+}
+
+.btn-channel-sub:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(214, 173, 98, 0.4);
+}
+
+.btn-channel-sub.subscribed {
+  background: var(--card-subtle);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  box-shadow: none;
+}
+
+.btn-channel-sub.subscribed:hover:not(:disabled) {
+  border-color: var(--border-gold-subtle);
+  color: var(--text-primary);
+  transform: none;
+}
+
+.btn-manage-channel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  background: var(--card-subtle);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-manage-channel:hover {
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+}
+
+/* Channel Tabs */
+.channel-tabs-bar {
+  display: flex;
+  gap: 32px;
+  border-bottom: 1px solid var(--border);
+  margin-top: 12px;
+  margin-bottom: 32px;
+}
+
+.channel-tab {
+  padding: 14px 4px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}
+
+.channel-tab:hover {
+  color: var(--text-primary);
+}
+
+.channel-tab.active {
+  color: var(--gold-primary);
+  border-bottom-color: var(--gold-primary);
+}
+
+/* About Tab */
+.channel-about-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .channel-about-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.about-bio-column h3,
+.about-stats-column h3 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.about-bio-text {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.about-stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.86rem;
+}
+
+.about-stat-label {
+  color: var(--text-muted);
+}
+
+.about-stat-val {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .channel-header-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .channel-large-avatar {
+    width: 72px;
+    height: 72px;
+  }
+  .channel-display-name {
+    font-size: 1.45rem;
+  }
+  .channel-actions-group {
+    width: 100%;
+  }
+  .channel-actions-group .btn-gold,
+  .channel-actions-group .btn-gold-subscribe {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .channel-tabs-bar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding-bottom: 4px;
+  }
+}
+

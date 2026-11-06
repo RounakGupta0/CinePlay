@@ -1,0 +1,135 @@
+.cineplay-explore-page {
+  padding-bottom: 72px;
+}
+
+.explore-header-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 36px 28px;
+  margin-bottom: 36px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.explore-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--gold-primary);
+  margin-bottom: 8px;
+}
+
+.explore-heading {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.explore-desc {
+  max-width: 680px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.explore-genre-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.explore-genre-strip::-webkit-scrollbar {
+  height: 0;
+}
+
+.explore-pill {
+  padding: 8px 18px;
+  border-radius: 9999px;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.explore-pill:hover {
+  background-color: var(--card-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-gold-subtle);
+}
+
+.explore-pill.active {
+  background: var(--gold-muted);
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+  font-weight: 600;
+}
+
+.empty-cinema-slate {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  margin-top: 20px;
+}
+
+.empty-symbol {
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+}
+
+.empty-cinema-slate h3 {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.empty-cinema-slate p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 768px) {
+  .explore-header-card {
+    padding: 24px 18px 20px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+  }
+
+  .explore-heading {
+    font-size: 1.6rem;
+  }
+
+  .explore-desc {
+    font-size: 0.86rem;
+    margin-bottom: 18px;
+  }
+
+  .explore-genre-strip {
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+  }
+
+  .explore-pill {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .explore-header-card {
+    padding: 18px 14px;
+  }
+
+  .explore-heading {
+    font-size: 1.35rem;
+  }
+}
