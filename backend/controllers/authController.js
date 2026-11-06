@@ -82,11 +82,14 @@ exports.register = async (req, res) => {
         message: 'Registration successful! Please check your email to verify your account.'
       });
     } catch (emailErr) {
+      console.warn('⚠️ Verification email delivery skipped or failed:', emailErr.message);
+      // When cloud host (e.g. Render) restricts SMTP ports, auto-activate user so registration never breaks
+      user.isVerified = true;
       user.emailVerificationToken = undefined;
       user.emailVerificationExpire = undefined;
       await user.save({ validateBeforeSave: false });
-      await User.deleteOne({ _id: user._id });
-      return res.status(500).json({ success: false, message: 'Failed to send verification email. Please try again.' });
+
+      return sendToken(user, 201, res, 'Registration successful! Welcome to CinePlay.');
     }
   } catch (err) {
     if (err.code === 11000) {
@@ -143,7 +146,12 @@ exports.login = async (req, res) => {
     }
 
     if (!user.isVerified) {
-      return res.status(401).json({ success: false, message: 'Please verify your email before logging in.' });
+      if (process.env.SKIP_EMAIL_VERIFICATION === 'true' || !process.env.EMAIL_USER) {
+        user.isVerified = true;
+        await user.save({ validateBeforeSave: false });
+      } else {
+        return res.status(401).json({ success: false, message: 'Please verify your email before logging in.' });
+      }
     }
 
     sendToken(user, 200, res, 'Logged in successfully.');
@@ -189,10 +197,17 @@ exports.resendVerification = async (req, res) => {
 
     const verificationUrl = `${process.env.CLIENT_URL}/verify-email/${verificationToken}`;
     const html = `<p>Click <a href="${verificationUrl}">here</a> to verify your email. Link expires in 24 hours.</p>`;
-    await sendEmail({ to: user.email, subject: 'CinePlay — Resend Email Verification', html });
-
-    res.json({ success: true, message: 'Verification email resent. Please check your inbox.' });
-  } catch (err) {
-    res.status(500).json({ success: false, message: 'Failed to resend verification email.' });
+    try {
+      await sendEmail({ to: user.email, subject: 'CinePlay — Resend Email Verification', html });
+      res.json({ success: true, message: 'Verification email resent. Please check your inbox.' });
+    } catch (err) {
+      user.isVerified = true;
+      user.emailVerificationToken = undefined;
+      user.emailVerificationExpire = undefined;
+      await user.save({ validateBeforeSave: false });
+      return res.json({ success: true, message: 'Email service restricted on host. Account has been automatically activated!' });
+    }
+  } catch (outerErr) {
+    res.status(500).json({ success: false, message: 'Failed to process verification request.' });
   }
 };
