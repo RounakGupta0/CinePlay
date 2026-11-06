@@ -1,0 +1,304 @@
+.cineplay-sidebar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  background-color: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 990;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, border-color 0.25s ease;
+  overflow: hidden;
+  user-select: none;
+}
+
+.cineplay-sidebar.collapsed {
+  width: var(--sidebar-collapsed);
+}
+
+/* Sidebar Brand Header (Owned by Top Navbar) */
+.sidebar-brand-wrapper {
+  display: none;
+}
+
+.sidebar-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.brand-logo-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F5D79E 0%, #D6AD62 50%, #B88B3E 100%);
+  color: #0B0B0B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 14px rgba(214, 173, 98, 0.3);
+  flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.brand-logo-circle svg {
+  margin-left: 2px;
+  /* optical center */
+}
+
+.sidebar-brand-link:hover .brand-logo-circle {
+  transform: scale(1.06);
+  box-shadow: 0 0 20px rgba(214, 173, 98, 0.45);
+}
+
+.brand-text-block {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.brand-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.brand-subtitle {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--gold-primary);
+  margin-top: 3px;
+  opacity: 0.9;
+}
+
+/* Scroll Area */
+.sidebar-scroll-area {
+  flex: 1;
+  padding: 20px 12px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-scroll-area::-webkit-scrollbar {
+  width: 0;
+}
+
+.nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.nav-section-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  padding: 10px 14px 6px;
+  text-transform: uppercase;
+}
+
+/* Nav Item with Muted Gold Highlight */
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  position: relative;
+}
+
+.sidebar-nav-item:hover {
+  background-color: var(--card-elevated);
+  color: var(--text-primary);
+}
+
+.sidebar-nav-item .nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.sidebar-nav-item:hover .nav-icon {
+  color: var(--gold-primary);
+  transform: translateX(1px);
+}
+
+/* Active State: Muted Golden Rounded Card matching CinePlay design */
+.sidebar-nav-item.active {
+  background: rgba(214, 173, 98, 0.16);
+  color: var(--gold-primary);
+  font-weight: 600;
+  border: 1px solid rgba(214, 173, 98, 0.35);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-nav-item.active .nav-icon {
+  color: var(--gold-primary);
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 14px 8px;
+}
+
+/* Creator Shortcut */
+.channel-shortcut-item {
+  padding: 8px 12px;
+}
+
+.channel-mini-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--gold-border);
+}
+
+.channel-mini-meta {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.channel-mini-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.channel-mini-role {
+  font-size: 0.7rem;
+  color: var(--gold-primary);
+  opacity: 0.8;
+}
+
+/* Sidebar Footer */
+.sidebar-footer-container {
+  padding: 16px 18px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.luxury-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--gold-primary);
+  margin-bottom: 6px;
+}
+
+.gold-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-primary);
+  box-shadow: 0 0 6px rgba(214, 173, 98, 0.6);
+}
+
+.sidebar-copyright {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Mobile & Tablet Drawer System (<= 1024px: iPads, Android tablets, phones) */
+.sidebar-mobile-backdrop {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .sidebar-mobile-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 1040;
+    animation: fadeInBackdrop 0.2s ease forwards;
+  }
+
+  @keyframes fadeInBackdrop {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .cineplay-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    height: 100vh !important;
+    width: 280px !important;
+    z-index: 1060 !important;
+    transform: translateX(-100%) !important;
+    box-shadow: 8px 0 32px rgba(0, 0, 0, 0.85);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .cineplay-sidebar.mobile-open {
+    transform: translateX(0) !important;
+  }
+
+  .sidebar-brand-wrapper {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-mobile-close-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    background: var(--card-elevated);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .sidebar-mobile-close-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--gold-primary);
+  }
+
+  .brand-text-block,
+  .nav-label,
+  .nav-section-title,
+  .sidebar-footer-container,
+  .creator-shortcut {
+    display: flex !important;
+  }
+}

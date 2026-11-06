@@ -1,0 +1,114 @@
+/* CinePlay Custom Luxury Dropdown */
+.cineplay-custom-dropdown {
+  position: relative;
+  width: 100%;
+  user-select: none;
+}
+
+.dropdown-trigger-btn {
+  width: 100%;
+  height: 48px;
+  background: var(--card-subtle);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.dropdown-trigger-btn:hover:not(:disabled) {
+  border-color: var(--gold-border);
+  background: var(--card-elevated);
+}
+
+.cineplay-custom-dropdown.is-open .dropdown-trigger-btn {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 0 1px var(--gold-primary);
+  background: var(--card-elevated);
+}
+
+.dropdown-trigger-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.dropdown-chevron-icon {
+  color: var(--gold-primary);
+  flex-shrink: 0;
+  margin-left: 10px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dropdown-chevron-icon.rotated {
+  transform: rotate(180deg);
+}
+
+.dropdown-options-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 6px;
+  margin: 0;
+  list-style: none;
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--gold-border);
+}
+
+[data-theme="light"] .dropdown-options-menu {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 0 0 0 1px var(--gold-border);
+}
+
+.dropdown-options-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.dropdown-options-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdown-options-menu::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.dropdown-option-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dropdown-option-item:hover {
+  background: var(--gold-muted);
+  color: var(--gold-primary);
+}
+
+.dropdown-option-item.is-selected {
+  background: var(--gold-muted);
+  color: var(--gold-primary);
+  font-weight: 600;
+}
+
+.dropdown-check-icon {
+  color: var(--gold-primary);
+}

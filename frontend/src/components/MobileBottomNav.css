@@ -1,0 +1,80 @@
+.cineplay-mobile-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .cineplay-mobile-bottom-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background-color: var(--surface);
+    border-top: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+    z-index: 1020;
+    padding: 0 4px;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+  }
+
+  .mobile-nav-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: all 0.15s ease;
+    padding: 4px 0;
+    height: 100%;
+  }
+
+  .mobile-nav-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .mobile-nav-tab.active-tab {
+    color: var(--gold-primary);
+  }
+
+  .mobile-nav-tab.active-tab .mobile-nav-label {
+    font-weight: 700;
+  }
+
+  .mobile-nav-tab:hover {
+    color: var(--text-primary);
+  }
+
+  /* Central Gold Plus Button */
+  .mobile-nav-create-btn {
+    flex: 0 0 54px;
+  }
+
+  .create-circle-gold {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-hover));
+    color: #0B0B0B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 12px rgba(214, 173, 98, 0.4);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  }
+
+  .mobile-nav-create-btn:active .create-circle-gold {
+    transform: scale(0.92);
+  }
+}
+

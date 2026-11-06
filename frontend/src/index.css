@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Dark Luxury Palette */
+  --bg: #0B0B0B;
+  /* Deep Pure Black */
+  --surface: #141414;
+  /* Dark Charcoal */
+  --card: #171717;
+  /* Charcoal Card Surface */
+  --card-elevated: #202020;
+  /* Hover / Elevated Charcoal */
+  --card-subtle: #1C1C1E;
+
+  /* Champagne Gold Accents */
+  --gold-primary: #D6AD62;
+  /* Warm Champagne Gold */
+  --gold-hover: #E5BD75;
+  /* Lighter Gold Hover */
+  --gold-muted: rgba(214, 173, 98, 0.12);
+  /* Subtle Gold Tint */
+  --gold-border: rgba(214, 173, 98, 0.35);
+  --gold-glow: rgba(214, 173, 98, 0.2);
+
+  /* Charcoal Surfaces */
+  --bg-charcoal: #171717;
+
+  /* Typography Colors */
+  --text-primary: #F5F5F7;
+  /* Clean Off-White */
+  --text-secondary: #A1A1AA;
+  /* Subtle Ash Gray */
+  --text-muted: #71717A;
+  /* Muted Gray */
+  --text-gold: #D6AD62;
+  /* Golden Serif Highlights */
+
+  /* Borders & Dividers */
+  --border: #262626;
+  /* Charcoal Minimal Border */
+  --border-subtle: #1F1F1F;
+  --border-gold-subtle: rgba(214, 173, 98, 0.2);
+
+  /* Functional Status */
+  --danger: #EF4444;
+  --success: #10B981;
+  --notification-red: #E11D48;
+
+  /* Layout Constants */
+  --sidebar-width: 250px;
+  --sidebar-collapsed: 76px;
+  --navbar-height: 68px;
+
+  /* Fonts - Premium Cinematic Typography */
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-display: 'Cinzel', serif;
+  --font-sans: 'Outfit', 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+}
+
+/* Light Champagne Luxury Theme */
+[data-theme="light"] {
+  /* Warm Pearl Cream Background */
+  --bg: #F7F5F0;
+  --surface: #FFFFFF;
+  --card: #FFFFFF;
+  --card-elevated: #F2EDE4;
+  --card-subtle: #FAF8F5;
+
+  /* Rich Champagne Gold tuned for optimal contrast on light canvas */
+  --gold-primary: #B38628;
+  --gold-hover: #9E741D;
+  --gold-muted: rgba(179, 134, 40, 0.12);
+  --gold-border: rgba(179, 134, 40, 0.38);
+  --gold-glow: rgba(179, 134, 40, 0.2);
+
+  /* Charcoal Surfaces on Light Canvas */
+  --bg-charcoal: #FFFFFF;
+
+  /* Typography Colors - High-contrast obsidian & crisp charcoal */
+  --text-primary: #121316;
+  --text-secondary: #3C3E4A;
+  --text-muted: #656878;
+  --text-gold: #966C17;
+
+  /* Borders & Dividers */
+  --border: #E5E0D6;
+  --border-subtle: #ECE8E0;
+  --border-gold-subtle: rgba(179, 134, 40, 0.28);
+
+  /* Functional Status */
+  --danger: #DC2626;
+  --success: #059669;
+  --notification-red: #E11D48;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Custom Scrollbar: Minimal & Sleek */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
+  border-radius: 4px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #D1C9BC;
+}
+
+::-webkit-scrollbar-thumb:hover,
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  background: transparent;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  outline: none;
+}
+
+/* Typography Helpers */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-gold {
+  color: var(--gold-primary);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #F5D79E 0%, #D6AD62 50%, #B88B3E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Luxury Button System */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-hover));
+  color: #0B0B0B;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 10px 22px;
+  border-radius: 9999px;
+  border: 1px solid var(--gold-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.02em;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, var(--gold-hover), #F1D196);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(214, 173, 98, 0.25);
+  color: #000;
+}
+
+.btn-gold-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.88rem;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.25s ease;
+}
+
+.btn-gold-secondary:hover {
+  background: rgba(214, 173, 98, 0.12);
+  border-color: var(--gold-primary);
+  color: var(--gold-hover);
+  transform: translateY(-1px);
+}
+
+.btn-charcoal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--card);
+  color: var(--text-primary);
+  font-size: 0.86rem;
+  font-weight: 500;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.btn-charcoal:hover {
+  background: var(--card-elevated);
+  border-color: var(--border-gold-subtle);
+  color: var(--gold-primary);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGold {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #262626;
+  border-top-color: var(--gold-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 40px auto;
+  display: block;
+}
+
+/* Main Layout Structure */
+.page-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg);
+}
+
+/* Fullscreen Auth Layout (Login & Sign Up - perfectly centered with no navbar/sidebar offsets) */
+.page-layout.auth-page-layout {
+  padding-top: 0 !important;
+  display: block !important;
+  min-height: 100vh !important;
+  width: 100% !important;
+  background-color: #08080a !important;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 32px 64px;
+  margin-left: 0;
+  margin-top: 0;
+  box-sizing: border-box;
+  transition: padding 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.main-content.auth-content-mode {
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  min-height: 100vh !important;
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: 0;
+}
+
+.main-content.watch-mode {
+  padding: 20px 28px 64px;
+}
+
+.main-content.shorts-mode {
+  padding: 0;
+  height: calc(100vh - var(--navbar-height));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+  .cineplay-sidebar:not(.mobile-open) {
+    transform: translateX(-100%);
+  }
+
+  .main-content:not(.auth-content-mode) {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 20px 16px 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content:not(.auth-content-mode) {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 14px 12px 76px;
+  }
+
+  .main-content.shorts-mode {
+    padding: 0 !important;
+    height: calc(100vh - var(--navbar-height) - 56px) !important;
+  }
+
+  .main-content.watch-mode {
+    padding: 10px 10px 76px !important;
+  }
+}
+
+/* Global Responsive Video Grids for All Pages (Home, Explore, Trending, Search, Library, Channel, etc.) */
+@media (max-width: 1380px) {
+  .discovery-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px 16px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .discovery-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px 12px !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .discovery-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
