@@ -1,0 +1,86 @@
+# ==========================================
+# CinePlay - Git Ignore Configuration
+# ==========================================
+
+# Dependencies
+node_modules/
+*/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment Variables & Credentials (CRITICAL FOR DEPLOYMENT)
+.env
+.env.*
+!.env.example
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+backend/.env
+backend/.env.*
+!backend/.env.example
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Production Builds & Output Directories
+build/
+dist/
+out/
+.next/
+frontend/build/
+frontend/dist/
+
+# Cache & Build Artifacts
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+.npm/
+.yarn/
+.pnp
+.pnp.js
+
+# Testing & Coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# Temporary Storage & Local Uploads
+uploads/
+temp/
+tmp/
+backend/uploads/
+backend/temp/
+backend/tmp/
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# IDE & Editor Settings
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*~
+
+# Scratch & Debug Scripts
+backend/test-build.js
+backend/test-deep-analysis.js
+*.log
+
