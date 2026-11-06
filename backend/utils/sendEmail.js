@@ -52,7 +52,7 @@ const sendEmail = async ({ to, subject, html }) => {
     throw new Error('Email credentials (EMAIL_USER / EMAIL_PASS) are not configured.');
   }
 
-  const port = Number(process.env.EMAIL_PORT) || 587;
+  const port = Number(process.env.EMAIL_PORT) || 465;
   const isSecure = port === 465;
 
   const transporter = nodemailer.createTransport({
@@ -63,9 +63,9 @@ const sendEmail = async ({ to, subject, html }) => {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
     },
-    connectionTimeout: 4000, // 4s timeout prevents server hanging on Render
-    greetingTimeout: 4000,
-    socketTimeout: 5000
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000
   });
 
   const mailOptions = {
