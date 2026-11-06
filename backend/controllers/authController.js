@@ -75,23 +75,22 @@ exports.register = async (req, res) => {
       </html>
     `;
 
+    let emailSent = false;
     try {
       await sendEmail({ to: user.email, subject: 'CinePlay — Verify Your Email', html });
-      res.status(201).json({
-        success: true,
-        message: 'Registration successful! Please check your email to verify your account.'
-      });
+      emailSent = true;
     } catch (emailErr) {
-      console.error('Failed to send verification email:', emailErr.message);
-      user.emailVerificationToken = undefined;
-      user.emailVerificationExpire = undefined;
-      await user.save({ validateBeforeSave: false });
-      await User.deleteOne({ _id: user._id });
-      return res.status(500).json({
-        success: false,
-        message: 'Failed to send verification email. Please check your email address and try again.'
-      });
+      console.warn('⚠️ Verification email dispatch issue (e.g. host SMTP blocked):', emailErr.message);
     }
+
+    res.status(201).json({
+      success: true,
+      emailSent,
+      message: emailSent
+        ? 'Registration successful! Please check your email to verify your account.'
+        : 'Registration successful! Cloud host blocked outbound SMTP. Please verify your email below.',
+      verificationUrl: !emailSent ? verificationUrl : undefined
+    });
   } catch (err) {
     if (err.code === 11000) {
       const field = Object.keys(err.keyValue)[0];

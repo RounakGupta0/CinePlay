@@ -47,7 +47,47 @@ const sendEmail = async ({ to, subject, html }) => {
     });
   }
 
-  // Option 2: SMTP via Nodemailer
+  // Option 2: HTTP API (Brevo) - 300 free emails/day over HTTPS Port 443
+  if (process.env.BREVO_API_KEY) {
+    return new Promise((resolve, reject) => {
+      const payload = JSON.stringify({
+        sender: { name: 'CinePlay', email: process.env.EMAIL_USER || 'rounakgupta691@gmail.com' },
+        to: [{ email: to }],
+        subject,
+        htmlContent: html
+      });
+
+      const req = https.request('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'api-key': process.env.BREVO_API_KEY,
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(payload)
+        },
+        timeout: 8000
+      }, (res) => {
+        let data = '';
+        res.on('data', chunk => data += chunk);
+        res.on('end', () => {
+          if (res.statusCode >= 200 && res.statusCode < 300) {
+            resolve(JSON.parse(data || '{}'));
+          } else {
+            reject(new Error(`Brevo API error (${res.statusCode}): ${data}`));
+          }
+        });
+      });
+
+      req.on('timeout', () => {
+        req.destroy();
+        reject(new Error('Brevo HTTP request timed out'));
+      });
+      req.on('error', reject);
+      req.write(payload);
+      req.end();
+    });
+  }
+
+  // Option 3: SMTP via Nodemailer
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
     throw new Error('Email credentials (EMAIL_USER / EMAIL_PASS) are not configured.');
   }

@@ -20,6 +20,7 @@ const Register = () => {
 
   const [loading, setLoading] = useState(false);
   const [registeredSuccess, setRegisteredSuccess] = useState(false);
+  const [verificationUrl, setVerificationUrl] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,6 +69,9 @@ const Register = () => {
       });
 
       if (data.success) {
+        if (data.verificationUrl) {
+          setVerificationUrl(data.verificationUrl);
+        }
         setRegisteredSuccess(true);
         toast.success('Registration successful! Please verify your email.');
       }
@@ -177,10 +181,24 @@ const Register = () => {
                 <strong style={{ color: '#F5F5F7' }}>{email}</strong>.<br />
                 Please verify your email address before signing in.
               </p>
+              {verificationUrl ? (
+                <div style={{ marginTop: 20, marginBottom: 20, padding: '16px', background: 'rgba(214, 173, 98, 0.08)', border: '1px solid rgba(214, 173, 98, 0.3)', borderRadius: 12, textAlign: 'center' }}>
+                  <p style={{ fontSize: '0.86rem', color: '#D6AD62', marginBottom: 12, lineHeight: 1.5 }}>
+                    Cloud host firewall blocked outbound SMTP. Click below to verify your email directly:
+                  </p>
+                  <a
+                    href={verificationUrl}
+                    className="btn-gold-auth-action"
+                    style={{ textDecoration: 'none', display: 'inline-block', padding: '10px 22px', fontSize: '0.9rem' }}
+                  >
+                    Verify Email Address
+                  </a>
+                </div>
+              ) : null}
               <Link
                 to="/login"
                 className="btn-gold-auth-action"
-                style={{ textDecoration: 'none' }}
+                style={{ textDecoration: 'none', marginTop: verificationUrl ? 8 : 0 }}
               >
                 Proceed to Sign In
               </Link>
