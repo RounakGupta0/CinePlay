@@ -1,11 +1,18 @@
 import axios from 'axios';
 
 const getBaseURL = () => {
-  if (process.env.REACT_APP_API_URL) return process.env.REACT_APP_API_URL;
+  const envUrl = process.env.REACT_APP_API_URL;
+  if (envUrl && envUrl.trim()) {
+    let url = envUrl.trim().replace(/\/+$/, '');
+    if (!url.endsWith('/api')) {
+      url = `${url}/api`;
+    }
+    return url;
+  }
   if (typeof window !== 'undefined') {
     const host = window.location.hostname;
     if (host && host !== 'localhost' && host !== '127.0.0.1') {
-      return `http://${host}:5000/api`;
+      return 'https://cineplay-55ik.onrender.com/api';
     }
   }
   return 'http://localhost:5000/api';

@@ -55,7 +55,7 @@ services:
         destination: /index.html
     envVars:
       - key: REACT_APP_API_URL
-        sync: false
+        value: https://cineplay-55ik.onrender.com/api
       - key: GENERATE_SOURCEMAP
         value: false
 

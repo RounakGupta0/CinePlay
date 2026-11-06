@@ -252,6 +252,21 @@ const Home = () => {
             </div>
           )}
         </section>
+      ) : !loading && videos.length === 0 ? (
+        <div className="empty-cinema-slate" style={{ padding: '80px 20px', textAlign: 'center' }}>
+          <div className="empty-symbol font-serif" style={{ fontSize: '3rem', marginBottom: '16px' }}>🎬</div>
+          <h3 className="font-serif" style={{ fontSize: '1.6rem', marginBottom: '10px' }}>No Videos Uploaded Yet</h3>
+          <p style={{ color: 'var(--text-secondary)', maxWidth: 460, margin: '0 auto 24px', lineHeight: 1.6 }}>
+            The CinePlay cinema catalog is clean and ready for your content. Be the first creator to share your videos or shorts!
+          </p>
+          <Link to="/upload" className="btn-gold" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 26px', borderRadius: '30px' }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            <span>Upload Your First Video</span>
+          </Link>
+        </div>
       ) : (
         <>
           {/* 1. CONTINUE WATCHING                                           */}
